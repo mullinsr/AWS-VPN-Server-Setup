@@ -35,7 +35,11 @@
         "High.Speed.VPN-Paid",
         "Ultra.High.Speed.VPN-Paid"
       ]
-    }
+    },
+    "KeyName": {
+    "Description": "EC2 KeyPair to enable SSH access to the instance",
+    "Type": "AWS::EC2::KeyPair::KeyName"
+  },
   },
   "Mappings": {
     "AWSInstanceType2Arch": {
@@ -101,6 +105,7 @@
     "VPNServerInstance": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
+        "KeyName" : { "Ref" : "KeyName" },
         "ImageId": {
           "Fn::FindInMap": [
             "AWSRegionArch2AMI",
